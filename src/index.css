@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-*: initial;
+  --color-accent: oklch(0.7089 0.1818 51.76);
+  --color-background: oklch(0.1873 0.0203 284.28);
+  --color-foreground: oklch(0.9737 0.0046 284.28);
+}
