@@ -4,35 +4,45 @@ import { Progress } from "./components/Progress";
 import { cn } from "./util/cn";
 import { Slide } from "./components/Slide";
 
-type Slide = {
-  id: string;
-  content: React.ComponentType;
-};
-
 type Props = {
-  slides: Slide[];
+  slides: React.ComponentType[];
+  breakoutSlide: React.ComponentType;
 };
-
-export const Carousel = ({ slides }: Props) => {
-  const { currentSlide, direction } = useSlideControl(slides);
-
+export const Carousel = ({ slides, breakoutSlide }: Props) => {
+  const { currentSlide, direction, showBreakout } = useSlideControl(slides);
+  const BreakoutSlide = breakoutSlide;
   return (
     <div className="bg-background relative flex h-screen min-w-screen flex-col items-center justify-center overflow-hidden">
       <div className="fixed top-4 left-4">
         <Progress total={slides.length} current={currentSlide} />
       </div>
+      <div
+        className={cn(
+          "bg-background/5 absolute inset-0 z-50 flex items-center justify-center backdrop-blur-sm transition-all transition-discrete duration-300 ease-in-out starting:translate-y-full",
+          showBreakout && "flex translate-y-0",
+          !showBreakout && "hidden translate-y-full",
+        )}
+      >
+        {<BreakoutSlide />}
+      </div>
       {slides.map((slide, index) => {
-        const Content = slide.content;
+        const Content = slide;
         return (
           <div
             className={cn(
-              "absolute transition-all transition-discrete duration-300 ease-in-out starting:opacity-0",
+              "border-foreground absolute flex w-full items-center justify-center p-16 transition-all transition-discrete duration-300 ease-in-out starting:opacity-0",
               currentSlide === index
-                ? "block translate-x-0 opacity-100"
+                ? "flex translate-x-0 opacity-100"
                 : "hidden opacity-0",
+              currentSlide != index &&
+                direction === "next" &&
+                "-translate-x-full",
+              currentSlide != index &&
+                direction === "previous" &&
+                "translate-x-full",
               currentSlide === index && direction === "next"
-                ? "starting:translate-x-1/2"
-                : "starting:-translate-x-1/2",
+                ? "starting:translate-x-full"
+                : "starting:-translate-x-full",
             )}
           >
             <Slide>

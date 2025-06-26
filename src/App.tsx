@@ -1,15 +1,9 @@
 import { Carousel } from "./Carousel";
-import * as slides from "./slides";
+import { slides } from "./slides";
+import { ReviewCode } from "./slides/review-code";
 
 function App() {
-  return (
-    <Carousel
-      slides={Object.values(slides).map((slide) => ({
-        id: slide.name,
-        content: slide,
-      }))}
-    ></Carousel>
-  );
+  return <Carousel slides={slides} breakoutSlide={ReviewCode} />;
 }
 
 export default App;

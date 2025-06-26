@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 
-export const useSlideControl = (
-  slides: { id: string; content: React.ComponentType }[]
-) => {
+export const useSlideControl = (slides: React.ComponentType[]) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState<"next" | "previous">("next");
+  const [showBreakout, setShowBreakout] = useState(false);
 
   const handleNext = useCallback(() => {
     if (currentSlide < slides.length - 1) {
@@ -22,6 +21,14 @@ export const useSlideControl = (
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowUp") {
+        return setShowBreakout(true);
+      }
+
+      if (showBreakout) {
+        return setShowBreakout(false);
+      }
+
       if (event.key === "ArrowRight" || event.key === " ") {
         handleNext();
       }
@@ -33,7 +40,7 @@ export const useSlideControl = (
     window.addEventListener("keydown", handleKeyDown);
 
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSlide, slides, handleNext, handlePrevious]);
+  }, [currentSlide, slides, handleNext, handlePrevious, showBreakout]);
 
-  return { currentSlide, direction };
+  return { currentSlide, direction, showBreakout };
 };

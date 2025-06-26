@@ -7,9 +7,9 @@ type Props = {
 
 export const Progress = ({ total, current }: Props) => {
   return (
-    <div className="items-center relative">
+    <div className="relative items-center">
       <div
-        className="w-2 h-2 z-1 absolute top-1/2 bg-accent rounded-full translate-y-[-50%] transition-all duration-150 ease-in-out delay-150"
+        className="bg-accent absolute top-1/2 z-1 h-2 w-2 translate-y-[-50%] rounded-full transition-all delay-150 duration-150 ease-in-out"
         style={{
           transform: `translateX(${current * 16}px)`,
         }}
@@ -21,10 +21,10 @@ export const Progress = ({ total, current }: Props) => {
             transform: `translateX(${index * 16}px)`,
           }}
           className={cn(
-            "w-2 h-2 rounded-full transition-all duration-300 absolute translate-y-[-50%] top-1/2",
+            "absolute top-1/2 h-2 w-2 translate-y-[-50%] rounded-full transition-all duration-300",
             index === current
-              ? "delay-150 w-4 h-4 bg-accent translate-x-[-4px]"
-              : "w-2 h-2 bg-foreground delay-0 "
+              ? "bg-accent h-4 w-4 translate-x-[-4px] delay-150"
+              : "bg-foreground h-2 w-2 delay-0",
           )}
         />
       ))}
