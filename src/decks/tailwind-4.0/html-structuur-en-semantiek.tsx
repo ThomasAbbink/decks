@@ -1,4 +1,4 @@
-import { CodeBlock } from "../components/Codeblock";
+import { CodeBlock } from "../../components/Codeblock";
 
 export const HtmlStructuurEnSemantiek = () => {
   return (

@@ -3,12 +3,14 @@ import logo from "./assets/logo_infi.svg";
 import { Progress } from "./components/Progress";
 import { cn } from "./util/cn";
 import { Slide } from "./components/Slide";
+import type { Deck } from "./model/types";
 
 type Props = {
-  slides: React.ComponentType[];
-  breakoutSlide: React.ComponentType;
+  deck: Deck;
 };
-export const Carousel = ({ slides, breakoutSlide }: Props) => {
+
+export const Carousel = ({ deck }: Props) => {
+  const { slides, breakoutSlide } = deck;
   const { currentSlide, direction, showBreakout } = useSlideControl(slides);
   const BreakoutSlide = breakoutSlide;
   return (
@@ -23,7 +25,7 @@ export const Carousel = ({ slides, breakoutSlide }: Props) => {
           !showBreakout && "hidden translate-y-full",
         )}
       >
-        {<BreakoutSlide />}
+        {BreakoutSlide && <BreakoutSlide />}
       </div>
       {slides.map((slide, index) => {
         const Content = slide;
@@ -55,7 +57,7 @@ export const Carousel = ({ slides, breakoutSlide }: Props) => {
         <img src={logo} alt="Infi" className="w-12" />
         <div className="self-end p-0 align-text-bottom leading-none">
           <span className="">Thomas Abbink</span> -{" "}
-          <span className="font-bold">Tailwind 4.0</span>
+          <span className="font-bold">{deck.title}</span>
         </div>
       </div>
     </div>

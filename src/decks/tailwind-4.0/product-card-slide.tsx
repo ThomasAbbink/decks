@@ -1,4 +1,4 @@
-import ProductCard from "../components/ReviewCode";
+import ProductCard from "./ProductCard";
 
 export const ProductCardSlide = () => {
   return (

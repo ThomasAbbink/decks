@@ -6,11 +6,11 @@ export const Inhoud = () => {
       <ul>
         <li>Tooling</li>
         <li>HTML structuur en semantiek</li>
-        <li>Common pitfalls</li>
+        <li>Veelvoorkomende issues</li>
       </ul>
-      <h2>Nieuw in 4.0</h2>
+      <h2>Nieuw in 4.0. Moet je updaten?</h2>
       <ul>
-        <li>Config</li>
+        <li>Config: alles in css</li>
         <li>Arbitraire values</li>
       </ul>
       <h2>Progressive Enhancements</h2>

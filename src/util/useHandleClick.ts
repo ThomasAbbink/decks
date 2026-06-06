@@ -7,7 +7,7 @@ export const useHandleClick = () => {
     setIsClicked(true);
     setTimeout(() => {
       setIsClicked(false);
-    }, 2000);
+    }, 500);
   };
   return { onClick, isClicked };
 };

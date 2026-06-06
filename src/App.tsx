@@ -1,9 +1,9 @@
 import { Carousel } from "./Carousel";
-import { slides } from "./slides";
-import { ReviewCode } from "./slides/review-code";
+import { deck } from "./decks/tailwind-4.0";
+// import { deck as showAndTellDeck } from "./decks/show-and-tell-2025-09-25";
 
 function App() {
-  return <Carousel slides={slides} breakoutSlide={ReviewCode} />;
+  return <Carousel deck={deck} />;
 }
 
 export default App;
