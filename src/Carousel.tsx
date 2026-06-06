@@ -13,11 +13,14 @@ export const Carousel = ({ deck }: Props) => {
   const { slides, breakoutSlide } = deck;
   const { currentSlide, direction, showBreakout } = useSlideControl(slides);
   const BreakoutSlide = breakoutSlide;
+  const hideChrome = slides[currentSlide]?.hideChrome;
   return (
     <div className="bg-background relative flex h-screen min-w-screen flex-col items-center justify-center overflow-hidden">
-      <div className="fixed top-4 left-4">
-        <Progress total={slides.length} current={currentSlide} />
-      </div>
+      {!hideChrome && (
+        <div className="fixed top-4 left-4 z-30">
+          <Progress total={slides.length} current={currentSlide} />
+        </div>
+      )}
       <div
         className={cn(
           "bg-background/5 absolute inset-0 z-50 flex items-center justify-center backdrop-blur-sm transition-all transition-discrete duration-300 ease-in-out starting:translate-y-full",
@@ -53,13 +56,15 @@ export const Carousel = ({ deck }: Props) => {
           </div>
         );
       })}
-      <div className="text-foreground/50 absolute bottom-4 left-4 flex gap-2">
-        <img src={logo} alt="Infi" className="w-12" />
-        <div className="self-end p-0 align-text-bottom leading-none">
-          <span className="">Thomas Abbink</span> -{" "}
-          <span className="font-bold">{deck.title}</span>
+      {!hideChrome && (
+        <div className="text-foreground/50 absolute bottom-4 left-4 z-30 flex gap-2">
+          <img src={logo} alt="Infi" className="w-12" />
+          <div className="self-end p-0 align-text-bottom leading-none">
+            <span className="">Thomas Abbink</span> -{" "}
+            <span className="font-bold">{deck.title}</span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

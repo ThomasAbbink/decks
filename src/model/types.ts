@@ -1,5 +1,10 @@
+export type SlideComponent = React.ComponentType & {
+  /** Hide the progress indicator and footer for this slide (e.g. a title). */
+  hideChrome?: boolean;
+};
+
 export type Deck = {
   title: string;
-  slides: React.ComponentType[];
+  slides: SlideComponent[];
   breakoutSlide?: React.ComponentType;
 };

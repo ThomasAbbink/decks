@@ -14,3 +14,5 @@ export const Title = () => {
     </>
   );
 };
+
+Title.hideChrome = true;
