@@ -12,6 +12,7 @@ import type { Deck } from "../../model/types";
 import { Einde } from "./einde";
 
 export const deck: Deck = {
+  title: "Tailwind 4.0",
   breakoutSlide: ReviewCode,
   slides: [
     Inhoud,
