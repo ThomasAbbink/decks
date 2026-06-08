@@ -21,7 +21,8 @@ export const useSlideControl = (slides: React.ComponentType[]) => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowUp") {
+      // R400 "black screen" button sends "." — reuse it for the breakout slide.
+      if (event.key === "ArrowUp" || event.key === ".") {
         return setShowBreakout(true);
       }
 
@@ -29,10 +30,16 @@ export const useSlideControl = (slides: React.ComponentType[]) => {
         return setShowBreakout(false);
       }
 
-      if (event.key === "ArrowRight" || event.key === " ") {
+      // R400 "next" button sends PageDown, arrow/space for keyboard navigation.
+      if (
+        event.key === "ArrowRight" ||
+        event.key === " " ||
+        event.key === "PageDown"
+      ) {
         handleNext();
       }
-      if (event.key === "ArrowLeft") {
+      // R400 "back" button sends PageUp.
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
         handlePrevious();
       }
     };
