@@ -25,24 +25,34 @@ void main() {
   float epoch = floor(u_time / epochDuration);
   float epochT = fract(u_time / epochDuration);
   float waveProgress = clamp(epochT / sweepFraction, 0.0, 1.0);
+  float waveStrip    = epochT / sweepFraction; // unclamped — drifts off-screen during pause
 
   float maxX = scale * aspect;
   float maxY = scale;
   float pat = mod(epoch, 6.0);
 
+  // Per-cell position (discrete) drives the flip logic.
+  // Continuous screen position (same formula, no floor) drives the wiper strip.
   float wavePos;
+  float contWavePos;
   if (pat < 1.0) {
-    wavePos = cell.x / maxX;
+    wavePos     = cell.x / maxX;
+    contWavePos = st.x / aspect;
   } else if (pat < 2.0) {
-    wavePos = cell.y / maxY;
+    wavePos     = cell.y / maxY;
+    contWavePos = st.y;
   } else if (pat < 3.0) {
-    wavePos = (cell.x + cell.y) / (maxX + maxY);
+    wavePos     = (cell.x + cell.y) / (maxX + maxY);
+    contWavePos = (st.x + st.y) / (aspect + 1.0);
   } else if (pat < 4.0) {
-    wavePos = (maxX - cell.x) / maxX;
+    wavePos     = (maxX - cell.x) / maxX;
+    contWavePos = 1.0 - st.x / aspect;
   } else if (pat < 5.0) {
-    wavePos = (maxY - cell.y) / maxY;
+    wavePos     = (maxY - cell.y) / maxY;
+    contWavePos = 1.0 - st.y;
   } else {
-    wavePos = (maxX - cell.x + maxY - cell.y) / (maxX + maxY);
+    wavePos     = (maxX - cell.x + maxY - cell.y) / (maxX + maxY);
+    contWavePos = 1.0 - (st.x + st.y) / (aspect + 1.0);
   }
 
   // Each epoch sweeps all tiles once; alternating epochs flip and un-flip,
@@ -82,5 +92,15 @@ void main() {
   // Original colours: bg rgb(33,33,40), lines rgb(130,150,200)
   vec3 bg = vec3(0.129, 0.129, 0.157);
   vec3 fg = vec3(0.510, 0.588, 0.784);
-  gl_FragColor = vec4(mix(bg, fg, mask), 1.0);
+  vec3 color = mix(bg, fg, mask);
+
+  // Wiper strip — a soft bright band that follows the wave front in continuous
+  // screen space. Wide enough (~1.3 tiles) to fully cover each tile at the
+  // moment it flips, hiding the instantaneous orientation change.
+  float stripWidth = 0.33;
+  float stripMask  = smoothstep(stripWidth, 0.0, abs(contWavePos - waveStrip));
+  vec3  stripColor = vec3(0.0, 0.0, 0.0);
+  color = mix(color, stripColor, stripMask);
+
+  gl_FragColor = vec4(color, 1.0);
 }
