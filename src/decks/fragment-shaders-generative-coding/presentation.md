@@ -63,6 +63,27 @@ Thankfully repeating elements is not that hard when writing a shader. You can sc
 Then there is some logic to alternate the bars.
 Finally there is some extra logic going on to give each bar a different offset
 
+### Ok cool. What else can you do?
+
+There are so many topics to dive into.
+
+- using noise to simulate living movement
+- Tiling, for instance truchet tiles
+- Voronoi diagrams
+
 ### Questions
 
-This is all I have for you today. There is some time for questions and to distract you and prevent you from asking things that are too difficult I'm going to leave some cool visuals running in a loop.
+## This is all I have for you today.
+
+There is some time for questions and to distract you and prevent you from asking things that are too difficult I'm going to leave some cool visuals running in a loop.
+
+---
+
+# feedback
+
+highlight fragment shader and vertex shader in pipeline
+pipeline -
+
+waarom shaders moeilijk: vergelijken met day to day
+
+Meer shaders tussendoor -- coole kunst zien.
