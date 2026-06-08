@@ -9,8 +9,8 @@ export type DeckEntry = {
 };
 
 export const decks: DeckEntry[] = [
-  { id: "fragment-shaders", deck: fragmentShaders },
   { id: "tailwind-4.0", deck: tailwind },
+  { id: "fragment-shaders", deck: fragmentShaders },
   { id: "show-and-tell", deck: showAndTell },
 ];
 

@@ -16,7 +16,14 @@ const Arrow = () => <span className="text-foreground/40 text-2xl">→</span>;
 export const VertexVsFragment = () => {
   return (
     <>
-      <h1>Vertex vs fragment</h1>
+      <div className="max-w-[80ch]">
+        <h1>Vertex and fragment shaders</h1>
+        <p>
+          What I've described so far is really only one part. A WebGL shader
+          program consists of two parts: a <strong>vertex</strong> and a{" "}
+          <strong>fragment</strong> shader.
+        </p>
+      </div>
       <div className="not-prose my-8 flex flex-wrap items-center gap-3">
         <Step label="Vertices" />
         <Arrow />
@@ -30,15 +37,21 @@ export const VertexVsFragment = () => {
         <Arrow />
         <Step label="Pixels" />
       </div>
-      <ul>
+      <ul className="max-w-[80ch]">
         <li>
-          <strong>Vertex shader</strong>: decides where geometry goes on screen.
+          <strong>Vertex shader</strong> — transforms the position of each
+          vertex.
         </li>
         <li>
-          <strong>Fragment shader</strong>: decides the color for a position on
-          screen.
+          <strong>Fragment shader</strong> — produces the color for a position
+          on screen.
         </li>
       </ul>
+      <p className="max-w-[80ch]">
+        For my examples I just pass one triangle big enough to cover the whole
+        screen, and the vertex shader mostly passes the position straight
+        through. All the work happens in the fragment shader.
+      </p>
     </>
   );
 };

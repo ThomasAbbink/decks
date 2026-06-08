@@ -13,7 +13,7 @@ void main() {
   float n = 0.5 + 0.5 * sin(v * 1.5);
 
   vec3 a = vec3(0.07, 0.06, 0.12);
-  vec3 b = vec3(0.45, 0.28, 0.78);
+  vec3 b = vec3(0.45, 0.78, 0.78);
   vec3 c = vec3(0.96, 0.62, 0.30);
 
   vec3 color = mix(a, b, n);

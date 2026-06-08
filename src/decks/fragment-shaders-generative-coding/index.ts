@@ -1,35 +1,40 @@
 import type { Deck } from "../../model/types";
 import { Title } from "./title";
+import { GenerativeCoding } from "./generative-coding";
+import { HappyLittleTrees } from "./happy-little-trees";
 import { WhatIsAShader } from "./what-is-a-shader";
+import { PrintingPress } from "./printing-press";
+import { ShaderRules } from "./shader-rules";
 import { VertexVsFragment } from "./vertex-vs-fragment";
-import { WhyFragmentShaders } from "./why-fragment-shaders";
-import { TwoMindShifts } from "./two-mind-shifts";
-import { GenerativeDoodling } from "./generative-doodling";
-import { TruchetTiles } from "./truchet-tiles";
-import { ProceduralCanvas } from "./procedural-canvas";
-import { PixelQuestion } from "./pixel-question";
-import { FirstShape } from "./first-shape";
-import { SinelinesBefore } from "./sinelines-before";
-import { SinelinesAfter } from "./sinelines-after";
-import { WhyItFeelsWeird } from "./why-it-feels-weird";
+import { IAmAPixel } from "./i-am-a-pixel";
+import { Sinelines } from "./sinelines";
+
+import { DrawingARectangle } from "./drawing-a-rectangle";
+import { AddingMovement } from "./adding-movement";
+import { PuttingItAllTogether } from "./putting-it-all-together";
+
 import { ResourcesAndEnd } from "./resources-and-end";
+import { Questions } from "./questions";
 
 export const deck: Deck = {
-  title: "Fragment Shaders & Generative Coding",
+  title: "Fragment Shaders & Generative Art",
   slides: [
     Title,
+    GenerativeCoding,
+    HappyLittleTrees,
     WhatIsAShader,
+    PrintingPress,
+    ShaderRules,
     VertexVsFragment,
-    WhyFragmentShaders,
-    TwoMindShifts,
-    GenerativeDoodling,
-    TruchetTiles,
-    ProceduralCanvas,
-    PixelQuestion,
-    FirstShape,
-    SinelinesBefore,
-    SinelinesAfter,
-    WhyItFeelsWeird,
+    IAmAPixel,
+    // up
+
+    Sinelines,
+    DrawingARectangle,
+    AddingMovement,
+    PuttingItAllTogether,
+
     ResourcesAndEnd,
+    Questions,
   ],
 };

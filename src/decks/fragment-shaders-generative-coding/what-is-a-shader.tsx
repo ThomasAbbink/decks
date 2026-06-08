@@ -1,17 +1,23 @@
 export const WhatIsAShader = () => {
   return (
-    <>
+    <div className="max-w-[80ch]">
       <h1>What is a shader?</h1>
-      <p>A small program that runs on the GPU as part of drawing graphics.</p>
-      <ul>
-        <li>It runs in parallel for many points at once.</li>
-        <li>The same code runs everywhere; only the position changes.</li>
-        <li>No loops over objects — each invocation answers one question.</li>
-      </ul>
-      <p className="text-foreground-secondary">
-        Two kinds matter today: <strong>vertex</strong> and{" "}
-        <strong>fragment</strong> shaders.
+      <p>
+        A shader is a program — a bit of code that runs once for every pixel on
+        your screen. It gets the position it is in and produces a color.
       </p>
-    </>
+      <p>
+        Your GPU runs it in parallel a <em>bunch</em> of times. My laptop has a
+        resolution of 3024 × 1964 — almost 6 million pixels.
+      </p>
+      <div className="not-prose mt-8 space-x-2">
+        <span className="text-accent text-2xl font-bold tabular-nums">
+          350,000,000+
+        </span>
+        <span className="text-foreground-secondary text-xl">
+          shader runs every second at 60 fps
+        </span>
+      </div>
+    </div>
   );
 };

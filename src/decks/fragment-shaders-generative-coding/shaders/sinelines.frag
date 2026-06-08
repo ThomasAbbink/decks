@@ -4,34 +4,31 @@ uniform vec2 u_resolution;
 uniform float u_time;
 
 void main() {
+  // normalize the pixel coordinates to be between 0 and 1, independent of the resolution.
   vec2 st = gl_FragCoord.xy / u_resolution.xy;
-  float y = 1.0 - st.y; // row 0 at the top
 
-  // floor(pixelY / rowHeight) instead of an array of line objects.
-  float rows = 26.0;
-  float rowF = y * rows;
-  float row = floor(rowF);
-  float within = fract(rowF);
-  float t = row / rows;
+  vec3 backgroundColor = vec3(0.10, 0.09, 0.15);
+  vec3 foregroundColor = vec3(0.90, 0.86, 0.95);
 
-  // phase = initialPhaseFromY + time * rowSpeed, instead of mutable angle.
-  float phase0 = mix(6.2831, 0.0, t);
-  float ownAngle = mix(-0.6, 0.6, t);
-  float phase = phase0 + u_time * (0.6 + ownAngle * 0.5);
+  // Repeat: divide the height into rows. fract() gives every row the same 0..1
+  // range, floor() tells us which row this pixel is in.
+  float rows = 16.0;
+  float row = floor(st.y * rows);
+  float withinRow = fract(st.y * rows);
 
-  // width = abs(sin(phase)) * maxGrowth + minWidth
-  float minWidth = 0.5;
-  float maxGrowth = 0.22;
-  float barWidth = abs(sin(phase)) * maxGrowth + minWidth;
+  // Give every row its own offset so the bars don't all move in lockstep.
+  float offset = row * 0.4;
 
-  // Interval masks decide if this pixel is inside the left or right bar.
-  float aa = 1.5 / u_resolution.y;
-  float leftMask = smoothstep(barWidth + aa, barWidth - aa, st.x);
-  float rightMask = smoothstep(1.0 - barWidth - aa, 1.0 - barWidth + aa, st.x);
-  float mask = mix(leftMask, rightMask, step(0.5, within));
+  // sin() turns the ever-growing u_time into a width that swings between 0.25 and 0.75.
+  float width = 0.5 + 0.25 * sin(u_time + offset);
 
-  vec3 bg = vec3(0.10, 0.09, 0.15);
-  float b = mix(1.0, 0.78, t);
-  vec3 bar = vec3(0.90, 0.86, b);
-  gl_FragColor = vec4(mix(bg, bar, mask), 1.0);
+  // Alternate: even rows grow from the left, odd rows from the right.
+  bool growFromLeft = mod(row, 2.0) == 0.0;
+  float x = growFromLeft ? st.x : 1.0 - st.x;
+
+  // I am one pixel at st.xy. Am I inside this row's bar?
+  bool inside = x < width && withinRow > 0.15 && withinRow < 0.85;
+
+  // instead of returning a value the output need to be set on the gl_FragColor variable.
+  gl_FragColor = inside ? vec4(foregroundColor, 1.0) : vec4(backgroundColor, 1.0);
 }
