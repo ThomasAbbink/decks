@@ -23,6 +23,7 @@ export const ResourcesAndEnd = () => {
           </a>{" "}
           — browse for taste and inspiration.
         </li>
+        <li>Ex Infi colleague Reinder Nijhoff - </li>
         <li>
           <a
             href="https://iquilezles.org/"
@@ -34,7 +35,6 @@ export const ResourcesAndEnd = () => {
           — read when you want to go deeper.
         </li>
       </ul>
-      <p>A shader isn't just a faster canvas — it's a different sketchbook.</p>
       <p className="text-foreground-secondary">Thanks! Questions?</p>
     </>
   );

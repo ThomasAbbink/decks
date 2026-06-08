@@ -9,7 +9,7 @@ export const Questions = () => {
       <ShaderCycle
         fragmentShaders={[fbmGridShader, flowFieldShader, fbmBlobShader]}
         intervalMs={30000}
-        dim={0.1}
+        dim={0.2}
       />
       <div className="relative z-10 max-w-[80ch]">
         <h1>Questions?</h1>
