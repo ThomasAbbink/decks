@@ -3,6 +3,7 @@ import logo from "./assets/logo_infi.svg";
 import { Progress } from "./components/Progress";
 import { cn } from "./util/cn";
 import { Slide } from "./components/Slide";
+import { SlideActiveContext } from "./util/slideActive";
 import type { Deck } from "./model/types";
 
 type Props = {
@@ -50,9 +51,11 @@ export const Carousel = ({ deck }: Props) => {
                 : "starting:-translate-x-full",
             )}
           >
-            <Slide>
-              <Content />
-            </Slide>
+            <SlideActiveContext value={currentSlide === index}>
+              <Slide>
+                <Content />
+              </Slide>
+            </SlideActiveContext>
           </div>
         );
       })}

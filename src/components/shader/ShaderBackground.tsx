@@ -1,4 +1,5 @@
 import { ShaderCanvas, type ShaderUniform } from "./ShaderCanvas";
+import { useSlideActive } from "../../util/slideActive";
 
 type Props = {
   fragmentShader: string;
@@ -22,9 +23,14 @@ export const ShaderBackground = ({
   uniforms,
   dim = 0,
 }: Props) => {
+  const isActive = useSlideActive();
   return (
     <div className="fixed top-1/2 left-1/2 h-screen w-screen -translate-x-1/2 -translate-y-1/2">
-      <ShaderCanvas fragmentShader={fragmentShader} uniforms={uniforms} />
+      <ShaderCanvas
+        fragmentShader={fragmentShader}
+        uniforms={uniforms}
+        paused={!isActive}
+      />
       {dim > 0 && (
         <div
           className="absolute inset-0"

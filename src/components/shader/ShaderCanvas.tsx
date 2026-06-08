@@ -15,6 +15,16 @@ type Props = {
   className?: string;
   /** Pause the render loop (e.g. for static demos). */
   paused?: boolean;
+  /**
+   * Cap canvas backing-store scale. Retina MacBooks use DPR 2, which quadruples
+   * fragment work vs an external 1× monitor at the same logical size.
+   */
+  maxDpr?: number;
+  /**
+   * Target frame rate. ProMotion displays run rAF at 120 Hz; heavy shaders that
+   * can't keep up stutter more at 120 than at a steady 60.
+   */
+  targetFps?: number;
 };
 
 export const ShaderCanvas = ({
@@ -22,6 +32,8 @@ export const ShaderCanvas = ({
   uniforms,
   className,
   paused = false,
+  maxDpr = 1.5,
+  targetFps = 60,
 }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const uniformsRef = useRef(uniforms);
@@ -31,7 +43,10 @@ export const ShaderCanvas = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext("webgl", { antialias: true });
+    const gl = canvas.getContext("webgl", {
+      antialias: true,
+      powerPreference: "high-performance",
+    });
     if (!gl) {
       console.error("WebGL is not available in this browser.");
       return;
@@ -63,7 +78,7 @@ export const ShaderCanvas = ({
     const customLocations = new Map<string, WebGLUniformLocation | null>();
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
       const width = Math.max(1, Math.floor(canvas.clientWidth * dpr));
       const height = Math.max(1, Math.floor(canvas.clientHeight * dpr));
       if (canvas.width !== width || canvas.height !== height) {
@@ -96,11 +111,21 @@ export const ShaderCanvas = ({
 
     const start = performance.now();
     let frame = 0;
+    let lastDrawTime = 0;
+    const frameInterval = targetFps > 0 ? 1000 / targetFps : 0;
 
-    const render = () => {
-      resize();
+    const render = (now: number) => {
+      if (frameInterval > 0) {
+        const elapsed = now - lastDrawTime;
+        if (elapsed < frameInterval) {
+          if (!paused) frame = requestAnimationFrame(render);
+          return;
+        }
+        lastDrawTime = now - (elapsed % frameInterval);
+      }
+
       gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-      gl.uniform1f(timeLocation, (performance.now() - start) / 1000);
+      gl.uniform1f(timeLocation, (now - start) / 1000);
 
       const current = uniformsRef.current;
       if (current) {
@@ -115,7 +140,7 @@ export const ShaderCanvas = ({
       }
     };
 
-    render();
+    frame = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(frame);
@@ -123,7 +148,7 @@ export const ShaderCanvas = ({
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
     };
-  }, [fragmentShader, paused]);
+  }, [fragmentShader, paused, maxDpr, targetFps]);
 
   return (
     <canvas ref={canvasRef} className={cn("block h-full w-full", className)} />

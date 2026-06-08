@@ -1,12 +1,19 @@
+import { ShaderCycle } from "../../components/shader/ShaderCycle";
+import fbmGridShader from "./shaders/fbm-grid.frag?raw";
+import flowFieldShader from "./shaders/flow-field.frag?raw";
+import fbmBlobShader from "./shaders/fbm-blob.frag?raw";
+
 export const Questions = () => {
   return (
-    <div className="max-w-[80ch]">
-      <h1>Questions?</h1>
-      <p>That's all I have for you today. There's some time for questions.</p>
-      <p className="text-foreground-secondary">
-        To distract you — and stop you from asking the ones that are too hard —
-        I'll leave some cool visuals running in a loop.
-      </p>
-    </div>
+    <>
+      <ShaderCycle
+        fragmentShaders={[fbmGridShader, flowFieldShader, fbmBlobShader]}
+        intervalMs={30000}
+        dim={0.1}
+      />
+      <div className="relative z-10 max-w-[80ch]">
+        <h1>Questions?</h1>
+      </div>
+    </>
   );
 };

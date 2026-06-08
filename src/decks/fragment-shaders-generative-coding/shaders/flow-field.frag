@@ -45,8 +45,8 @@ float fbm(vec2 st) {
 vec3 palette(float t) {
   t = fract(t);
 
-  vec3 c0 = vec3(0.97, 0.91, 0.78); // pale cream band
-  vec3 c1 = vec3(0.86, 0.71, 0.49); // sandy tan
+  vec3 c0 = vec3(0.97, 0.96, 0.98); // pale cream band
+  vec3 c1 = vec3(0.86, 0.71, 0.79); // sandy tan
   vec3 c2 = vec3(0.78, 0.46, 0.22); // ochre / burnt orange
   vec3 c3 = vec3(0.55, 0.22, 0.12); // deep rust
   vec3 c4 = vec3(0.90, 0.80, 0.68); // shadowed brown-red

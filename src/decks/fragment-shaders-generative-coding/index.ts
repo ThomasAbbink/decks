@@ -15,14 +15,12 @@ import { PuttingItAllTogether } from "./putting-it-all-together";
 
 import { ResourcesAndEnd } from "./resources-and-end";
 import { Questions } from "./questions";
-import { FbmBlob } from "./fbmBlob";
-import { FlowField } from "./flowField";
+import { ShaderShowcase } from "./shaderShowcase";
 
 export const deck: Deck = {
   title: "Fragment Shaders & Generative Art",
   slides: [
-    FlowField,
-    FbmBlob,
+    ShaderShowcase,
     Title,
     GenerativeCoding,
     HappyLittleTrees,
@@ -36,6 +34,7 @@ export const deck: Deck = {
     AddingMovement,
     PuttingItAllTogether,
     ResourcesAndEnd,
+
     Questions,
   ],
 };
