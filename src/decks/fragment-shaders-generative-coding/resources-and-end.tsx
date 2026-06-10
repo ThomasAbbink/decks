@@ -10,6 +10,7 @@ export const ResourcesAndEnd = () => {
           href="https://reindernijhoff.net/oneshader/"
         />
         <Item text="Inigo Quilez" href="https://iquilezles.org/" />
+        <Item text="My personal website" href="https://pataphysical.tech" />
       </ul>
     </>
   );

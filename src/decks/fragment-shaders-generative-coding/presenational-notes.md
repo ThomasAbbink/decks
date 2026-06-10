@@ -1,6 +1,6 @@
 # 0: Intro
 
-HI
+Hi
 about encountering mindshifts
 
 # 1: generative art

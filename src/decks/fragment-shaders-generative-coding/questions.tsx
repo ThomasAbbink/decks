@@ -17,7 +17,6 @@ export const Questions = () => {
           fbmGridShader,
         ]}
         intervalMs={30000}
-        dim={0}
       />
       <div className="relative z-10 max-w-[80ch]">
         <h1>Questions?</h1>

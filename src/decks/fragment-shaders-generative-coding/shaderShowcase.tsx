@@ -15,7 +15,7 @@ export const ShaderShowcase = () => {
         flowFieldShader,
         fbmGridShader,
       ]}
-      intervalMs={600000}
+      intervalMs={60000}
     />
   );
 };
