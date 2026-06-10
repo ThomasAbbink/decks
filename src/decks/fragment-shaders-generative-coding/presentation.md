@@ -65,6 +65,8 @@ Thankfully repeating elements is not that hard when writing a shader. You can sc
 Then there is some logic to alternate the bars.
 Finally there is some extra logic going on to give each bar a different offset
 
+Now that we all understand what it means to be a pixel I want to take you back to the first mind-shift. Lets just quickly play around with some variables and see what happens. - live demo
+
 ### Ok cool. What else can you do?
 
 Procedural noise: You can't have random numbers but you can have noise functions. Given some input these can output smooth organic feeling randomness. There are some well known noise functions, like Perlin and later Simplex noise.

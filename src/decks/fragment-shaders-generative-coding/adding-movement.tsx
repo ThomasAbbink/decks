@@ -29,7 +29,7 @@ export const AddingMovement = () => {
         <p className="text-foreground-secondary mt-4 text-lg">
           We pass in a <code>uniform</code> called <code>u_time</code> from
           JavaScript — the same value for every pixel, one tick bigger each
-          frame. Run it through <code>sin()</code> and the width breathes.
+          frame.
         </p>
       </div>
       <ShaderCanvas

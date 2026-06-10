@@ -49,5 +49,3 @@ p5js
 no shaders
 breakdown the concept
 why i love this sketch - generative
-
-#

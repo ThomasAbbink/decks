@@ -20,9 +20,9 @@ export const PuttingItAllTogether = () => {
   bool growFromLeft = mod(row, 2.0) == 0.0;
   float x = growFromLeft ? coordinates.x : 1.0 - coordinates.x;
 
-  float barHeight = 0.1;
+  float barPadding = 0.1;
   // Is the pixel inside the bar? 
-  bool inside = x < width && heightWithinRow > barHeight && heightWithinRow < 1.0 - barHeight;
+  bool inside = x < width && heightWithinRow > barPadding && heightWithinRow < 1.0 - barPadding;
 
   // instead of returning a value the output need to be set on the gl_FragColor variable.
   gl_FragColor = inside ? vec4(foregroundColor, 1.0) : vec4(backgroundColor, 1.0);`;
