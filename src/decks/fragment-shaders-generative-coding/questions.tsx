@@ -10,11 +10,11 @@ export const Questions = () => {
     <>
       <ShaderCycle
         fragmentShaders={[
-          truchetShader,
           voronoiShader,
-          fbmGridShader,
           flowFieldShader,
+          truchetShader,
           fbmBlobShader,
+          fbmGridShader,
         ]}
         intervalMs={30000}
         dim={0}

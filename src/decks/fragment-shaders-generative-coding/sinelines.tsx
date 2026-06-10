@@ -4,9 +4,7 @@ export const Sinelines = () => {
   return (
     <div className="flex h-[calc(100vh-16rem)] items-center gap-16">
       <div className="flex h-full max-w-[55ch] flex-col justify-center">
-        <h1>
-          <code>sinelines</code>
-        </h1>
+        <h1>Sinelines</h1>
         <p>
           A sketch I made back in 2023 after seeing a similar concept somewhere.
           Drawn with p5.js straight to a canvas — no shaders. The concept:

@@ -5,16 +5,16 @@ uniform float u_time;
 
 void main() {
   // normalize the pixel coordinates to be between 0 and 1, independent of the resolution.
-  vec2 st = gl_FragCoord.xy / u_resolution.xy;
+  vec2 coordinates = gl_FragCoord.xy / u_resolution.xy;
 
   vec3 backgroundColor = vec3(0.10, 0.09, 0.15);
   vec3 foregroundColor = vec3(0.90, 0.86, 0.95);
 
-  // Repeat: divide the height into rows. fract() gives every row the same 0..1
-  // range, floor() tells us which row this pixel is in.
+  // Repeat: divide the height into rows.
+  // floor() tells us which row this pixel is in.
   float rows = 16.0;
-  float row = floor(st.y * rows);
-  float withinRow = fract(st.y * rows);
+  float row = floor(coordinates.y * rows);
+  float heightWithinRow = fract(coordinates.y * rows);
 
   // Give every row its own offset so the bars don't all move in lockstep.
   float offset = row * 0.4;
@@ -24,10 +24,11 @@ void main() {
 
   // Alternate: even rows grow from the left, odd rows from the right.
   bool growFromLeft = mod(row, 2.0) == 0.0;
-  float x = growFromLeft ? st.x : 1.0 - st.x;
+  float x = growFromLeft ? coordinates.x : 1.0 - coordinates.x;
 
-  // I am one pixel at st.xy. Am I inside this row's bar?
-  bool inside = x < width && withinRow > 0.15 && withinRow < 0.85;
+  float barHeight = 0.1;
+  // Is the pixel inside the bar? 
+  bool inside = x < width && heightWithinRow > barHeight && heightWithinRow < 1.0 - barHeight;
 
   // instead of returning a value the output need to be set on the gl_FragColor variable.
   gl_FragColor = inside ? vec4(foregroundColor, 1.0) : vec4(backgroundColor, 1.0);

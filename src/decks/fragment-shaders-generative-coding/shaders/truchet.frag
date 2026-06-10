@@ -2,6 +2,7 @@ precision mediump float;
 
 uniform vec2 u_resolution;
 uniform float u_time;
+uniform float u_showTileEdges;
 
 float random(vec2 c) {
   return fract(sin(dot(c, vec2(12.9898, 78.233))) * 43758.5453);
@@ -101,6 +102,14 @@ void main() {
   float stripMask  = smoothstep(stripWidth, 0.0, abs(contWavePos - waveStrip));
   vec3  stripColor = vec3(0.0, 0.0, 0.0);
   color = mix(color, stripColor, stripMask);
+
+  if (u_showTileEdges > 0.5) {
+    float edgeWidth = 0.012;
+    float edgeDist = min(min(f.x, 1.0 - f.x), min(f.y, 1.0 - f.y));
+    float edgeMask = smoothstep(edgeWidth, 0.0, edgeDist);
+    vec3 edgeColor = vec3(0.35, 0.38, 0.45);
+    color = mix(color, edgeColor, edgeMask);
+  }
 
   gl_FragColor = vec4(color, 1.0);
 }

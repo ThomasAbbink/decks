@@ -9,11 +9,11 @@ export const ShaderShowcase = () => {
   return (
     <ShaderCycle
       fragmentShaders={[
+        fbmBlobShader,
         truchetShader,
         voronoiShader,
-        fbmGridShader,
         flowFieldShader,
-        fbmBlobShader,
+        fbmGridShader,
       ]}
       intervalMs={600000}
     />
