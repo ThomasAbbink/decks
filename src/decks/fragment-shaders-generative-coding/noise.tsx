@@ -1,5 +1,5 @@
 import { ShaderCanvas } from "../../components/shader/ShaderCanvas";
-import flowFieldShader from "./shaders/flow-field.frag?raw";
+import fireClouds from "./shaders/fire-clouds.frag?raw";
 
 export const Noise = () => {
   return (
@@ -15,7 +15,7 @@ export const Noise = () => {
       </div>
       <ShaderCanvas
         className="aspect-square w-[70vh] rounded-xl shadow-2xl"
-        fragmentShader={flowFieldShader}
+        fragmentShader={fireClouds}
       />
     </div>
   );
