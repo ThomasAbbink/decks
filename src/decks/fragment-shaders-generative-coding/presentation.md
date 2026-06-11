@@ -6,9 +6,9 @@ Hi, my name is Thomas. I am a developer at Infi and I am going to talk to you ab
 
 ### Mind shift 1: generative art
 
-The thing I want you to leave this talk with is how fun it is to encounter a complete paradigm shift. A new way of looking at something that completely changes the way you think about it. The first shift is about _how_ you write code.
+The thing I want you to leave this talk with is how fun it is to encounter a complete paradigm shift. A new way of looking at something that completely changes the way you think about it. The first shift is about _how_ you write code. It is about using code like Bob Ross makes a painting.
 
-I want to impart on you how fun it can be to start writing code without knowing where it should end up. I usually have a topic I want to explore, things I read somewhere. Think voronoi diagrams, flow fields, fractals, fractal brownian motion. Then I just create a folder called `doodle` and see where it ends up.
+I want to impart on you how fun it can be to start writing code without knowing where it should end up. We are all used to writing tickets, speccing out features, maybe even write unit tests before you begin. How I usually have a topic I want to explore, things I read somewhere. Think voronoi diagrams, flow fields, fractals, fractal brownian motion. Then I just create a folder called `doodle` and see where it ends up.
 
 The same goes for what I write. I make generative art meaning I set up some rules and variables and see where the visuals go. I'm not good at drawing. If I try to make something that exactly resembles lets say a tree it looks horrible. But if I think about how to generate trees, add color and movement, something cool always pops up.
 

@@ -16,6 +16,7 @@ import { ShaderShowcase } from "./shaderShowcase";
 import { Noise } from "./noise";
 import { TruchetTiles } from "./truchet-tiles";
 import { Voronoi } from "./voronoi";
+import { DrawingComparison } from "./drawing-comparison";
 
 export const deck: Deck = {
   title: "Fragment Shaders & Generative Art",
@@ -23,6 +24,7 @@ export const deck: Deck = {
     ShaderShowcase,
     Title,
     GenerativeCoding,
+    DrawingComparison,
     HappyLittleTrees,
     WhatIsAShader,
     PrintingPress,
